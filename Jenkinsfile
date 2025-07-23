@@ -1,16 +1,14 @@
 pipeline {
-    agent any
-    
-    tools {
-        maven 'maven3.6'
-        jdk 'jdk17'
-    }
-
+    agent {label 'Agent1'}
+  tools{
+      maven 'maven3.6'
+      jdk 'jdk17'
+  }
     stages {
         
         stage('Compile') {
             steps {
-             sh 'mvn compile'
+                sh 'mvn compile'
             }
         }
         stage('test') {
@@ -18,14 +16,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Package') {
+        stage('package') {
             steps {
-               sh 'mvn package'
-            }
-        }
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
+                sh 'mvn package'
             }
         }
     }
